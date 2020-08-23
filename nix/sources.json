@@ -35,6 +35,18 @@
         "url": "https://github.com/NixOS/nixpkgs/archive/add5529b3ee2df5035d7fb06120b74363a373be4.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
+    "emacs-pgtk-nativecomp": {
+        "branch": "pgtk-nativecomp",
+        "description": "Mirror of GNU Emacs",
+        "homepage": "http://www.gnu.org/software/emacs/",
+        "owner": "fejfighter",
+        "repo": "emacs",
+        "rev": "b7adb08f960fe6568f702b8f328e65e3833ffc13",
+        "sha256": "0p852k5wf8sy9h7x2z6iivf9xnhpy85vly9fn0a1qj2japrhvyr2",
+        "type": "tarball",
+        "url": "https://github.com/fejfighter/emacs/archive/b7adb08f960fe6568f702b8f328e65e3833ffc13.tar.gz",
+        "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
+    },
     "pre-commit-hooks.nix": {
         "branch": "master",
         "description": "Seamless integration of https://pre-commit.com git hooks with Nix.",

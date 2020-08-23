@@ -2,12 +2,11 @@ let
   sources = import ./nix/sources.nix;
   nixpkgs = sources."nixos-unstable";
   pkgs = import nixpkgs {};
-  rev = "b7adb08f960fe6568f702b8f328e65e3833ffc13";
-  sha256 = "0p852k5wf8sy9h7x2z6iivf9xnhpy85vly9fn0a1qj2japrhvyr2";
+  emacs-pgtk-nativecomp = sources."emacs-pgtk-nativecomp";
 in
 {
   ci = (import ./nix {}).ci;
-  emacsGccPGtk = builtins.foldl' (drv: fn: fn drv)
+  emacsGccPgtk = builtins.foldl' (drv: fn: fn drv)
     pkgs.emacs
     [
 
@@ -19,9 +18,7 @@ in
             name = "emacs-pgtk-native-comp";
             version = "28.0.50";
             src = pkgs.fetchFromGitHub {
-              owner = "fejfighter";
-              repo = "emacs";
-              inherit rev sha256;
+              inherit (emacs-pgtk-nativecomp) owner repo rev sha256;
             };
 
             configureFlags = old.configureFlags
