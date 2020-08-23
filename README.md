@@ -1,10 +1,6 @@
 # To use the binary cache
 
-Install and set up cachix, then:
-
-```
-cachix use mjlbach
-```
+Follow the instructions [here](https://app.cachix.org/cache/mjlbach) to setup and add my cachix cache which provides precompiled binaries, built against nixos-unstable each night.
 
 # To use the overlay
 
