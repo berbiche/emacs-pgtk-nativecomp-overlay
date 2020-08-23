@@ -1,3 +1,11 @@
+# To use the binary cache
+
+Install and set up cachix, then:
+
+```
+cachix use mjlbach
+```
+
 # To use the overlay
 
 Add the following to your $HOME/.config/nixpkgs/overlays directory:
@@ -9,10 +17,12 @@ import (builtins.fetchTarball {
     })
 ```
 
-# To use the binary cache
+Install emacsGccPgtk:
 ```
-cachix use mjlbach
+nix-env -iA nixpkgs.emacsGccPgtk
 ```
+or add to home-manager/configuration.nix.
+
 
 # To wrap the binary so native-comp can find libgccjit
 ```nix
@@ -27,7 +37,7 @@ let
           url = https://github.com/mjlbach/emacs-pgtk-nativecomp-overlay/archive/master.tar.gz;
         });
 in {
-  emacsGccWrapped = super.symlinkJoin {
+  emacsGccPgtkWrapped = super.symlinkJoin {
     name = "emacsGccWrapped";
     paths = [ emacs-overlay.emacsGccPgtk ];
     buildInputs = [ super.makeWrapper ];
@@ -40,4 +50,11 @@ in {
     src = emacs-overlay.emacsGccPgtk.src;
   };
 } 
+
 ```
+Install emacsGccPgtkWrapped:
+```
+nix-env -iA nixpkgs.emacsGccPgtkWrapped
+```
+or add to home-manager/configuration.nix.
+
