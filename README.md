@@ -2,7 +2,7 @@
 
 Follow the instructions [here](https://app.cachix.org/cache/mjlbach) to setup and add my cachix cache which provides precompiled binaries, built against nixos-unstable each night.
 
-# To use the overlay
+# To use the overlay (if you're managing/compiling your emacs packages via nix)
 
 Add the following to your $HOME/.config/nixpkgs/overlays directory:
 
@@ -20,7 +20,8 @@ nix-env -iA nixpkgs.emacsGccPgtk
 or add to home-manager/configuration.nix.
 
 
-# To wrap the binary so native-comp can find libgccjit
+# To use the overlay (if you're managing/compiling your emacs packages via straight.el or another package manager)
+Emacs must be wrapped with the appropriate library path in order to find libgccjit and requisite libraries. Use the following overlay:
 ```nix
 self: super:
 let
