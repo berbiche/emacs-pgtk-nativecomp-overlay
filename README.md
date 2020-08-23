@@ -1,6 +1,6 @@
-# To use the binary cache
+# To get nix and set up the binary cache
 
-Follow the instructions [here](https://app.cachix.org/cache/mjlbach) to setup and add my cachix cache which provides precompiled binaries, built against nixos-unstable each night.
+Follow the instructions [here](https://app.cachix.org/cache/mjlbach) to set up nix and add my cachix cache which provides precompiled binaries, built against the nixos-unstable channel each night.
 
 # To use the overlay (if you're managing/compiling your emacs packages via nix)
 
