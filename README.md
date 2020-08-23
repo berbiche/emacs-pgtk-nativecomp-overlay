@@ -4,7 +4,7 @@ Follow the instructions [here](https://app.cachix.org/cache/mjlbach) to setup an
 
 # To use the overlay (if you're managing/compiling your emacs packages via nix)
 
-Add the following to your $HOME/.config/nixpkgs/overlays directory:
+Add the following to your $HOME/.config/nixpkgs/overlays directory: (make a file $HOME/.config/nixpkgs/overlays/emacs.nix and paste the snippet below into that file)
 
 ```nix
 self: super:
@@ -21,7 +21,7 @@ or add to home-manager/configuration.nix.
 
 
 # To use the overlay (if you're managing/compiling your emacs packages via straight.el or another package manager)
-Emacs must be wrapped with the appropriate library path in order to find libgccjit and requisite libraries. Use the following overlay:
+Emacs must be wrapped with the appropriate library path in order to find libgccjit and requisite libraries. Add the following to your $HOME/.config/nixpkgs/overlays directory: (make a file $HOME/.config/nixpkgs/overlays/emacs.nix and paste the snippet below into that file)
 ```nix
 self: super:
 let
