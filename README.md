@@ -35,7 +35,7 @@ let
         });
 in {
   emacsGccPgtkWrapped = super.symlinkJoin {
-    name = "emacsGccWrapped";
+    name = "emacsGccPgtkWrapped";
     paths = [ emacs-overlay.emacsGccPgtk ];
     buildInputs = [ super.makeWrapper ];
     postBuild = ''
