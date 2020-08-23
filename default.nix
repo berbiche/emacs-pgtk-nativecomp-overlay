@@ -1,5 +1,7 @@
-{ pkgs ? import <nixos-unstable> {} }:
 let
+  sources = import ./nix/sources.nix;
+  nixpkgs = sources."nixos-unstable";
+  pkgs = import nixpkgs {};
   rev = "b7adb08f960fe6568f702b8f328e65e3833ffc13";
   sha256 = "0p852k5wf8sy9h7x2z6iivf9xnhpy85vly9fn0a1qj2japrhvyr2";
 in
