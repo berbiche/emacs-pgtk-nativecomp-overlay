@@ -3,9 +3,11 @@ let
   nixpkgs = sources."nixos-unstable";
   pkgs = import nixpkgs {};
   emacs-pgtk-nativecomp = sources."emacs-pgtk-nativecomp";
-in
-{
-  ci = (import ./nix {}).ci;
+  libPath = with pkgs; lib.concatStringsSep ":" [
+    "${lib.getLib libgccjit}/lib/gcc/${stdenv.targetPlatform.config}/${libgccjit.version}"
+    "${lib.getLib stdenv.cc.cc}/lib"
+    "${lib.getLib stdenv.glibc}/lib"
+  ];
   emacsGccPgtk = builtins.foldl' (drv: fn: fn drv)
     pkgs.emacs
     [
@@ -15,7 +17,7 @@ in
       (
         drv: drv.overrideAttrs (
           old: {
-            name = "emacs-pgtk-native-comp";
+            name = "emacsGccPgtk";
             version = "28.0.50";
             src = pkgs.fetchFromGitHub {
               inherit (emacs-pgtk-nativecomp) owner repo rev sha256;
@@ -57,4 +59,23 @@ in
         }
       )
     ];
-}
+in
+_: _:
+  {
+    ci = (import ./nix {}).ci;
+
+    inherit emacsGccPgtk;
+
+    emacsGccPgtkWrapped = pkgs.symlinkJoin {
+      name = "emacsGccPgtkWrapped";
+      paths = [ emacsGccPgtk ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/emacs \
+        --set LIBRARY_PATH ${libPath}
+      '';
+      meta.platforms = pkgs.stdenv.lib.platforms.linux;
+      passthru.nativeComp = true;
+      src = emacsGccPgtk.src;
+    };
+  }
