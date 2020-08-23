@@ -44,7 +44,7 @@ in
 
             postPatch = old.postPatch + ''
               substituteInPlace lisp/loadup.el \
-              --replace '(emacs-repository-get-version)' '"${rev}"' \
+              --replace '(emacs-repository-get-version)' '"${emacs-pgtk-nativecomp.rev}"' \
               --replace '(emacs-repository-get-branch)' '"master"'
             '';
 
