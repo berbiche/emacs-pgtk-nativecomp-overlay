@@ -5,10 +5,10 @@
         "homepage": "http://www.gnu.org/software/emacs/",
         "owner": "fejfighter",
         "repo": "emacs",
-        "rev": "b7adb08f960fe6568f702b8f328e65e3833ffc13",
-        "sha256": "0p852k5wf8sy9h7x2z6iivf9xnhpy85vly9fn0a1qj2japrhvyr2",
+        "rev": "98066351d6ecc8726fd69b57ba05fd99836af43a",
+        "sha256": "1kzaqc7795664hgyqq3m7i75g43dvmn573yv05hfnhgnqw7rwqzh",
         "type": "tarball",
-        "url": "https://github.com/fejfighter/emacs/archive/b7adb08f960fe6568f702b8f328e65e3833ffc13.tar.gz",
+        "url": "https://github.com/fejfighter/emacs/archive/98066351d6ecc8726fd69b57ba05fd99836af43a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "gitignore.nix": {
@@ -53,10 +53,10 @@
         "homepage": "",
         "owner": "cachix",
         "repo": "pre-commit-hooks.nix",
-        "rev": "14595eb18d15d6832a5c7137aefa095a624ba948",
-        "sha256": "09hx3qa936g27jz81wbr93dvi0mvj3771midvpkxm4f7wwqjh9ki",
+        "rev": "a3f7609ba73eb9ce3fe434d4339101017a430912",
+        "sha256": "05mi3s7c30wylfyxfb3hab0w9cbjahskmz4abidbxsmchjyici6a",
         "type": "tarball",
-        "url": "https://github.com/cachix/pre-commit-hooks.nix/archive/14595eb18d15d6832a5c7137aefa095a624ba948.tar.gz",
+        "url": "https://github.com/cachix/pre-commit-hooks.nix/archive/a3f7609ba73eb9ce3fe434d4339101017a430912.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     }
 }
