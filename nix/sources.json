@@ -3,12 +3,12 @@
         "branch": "pgtk-nativecomp",
         "description": "Mirror of GNU Emacs",
         "homepage": "http://www.gnu.org/software/emacs/",
-        "owner": "fejfighter",
+        "owner": "flatwhatson",
         "repo": "emacs",
-        "rev": "98066351d6ecc8726fd69b57ba05fd99836af43a",
-        "sha256": "1kzaqc7795664hgyqq3m7i75g43dvmn573yv05hfnhgnqw7rwqzh",
+        "rev": "bc0d02e573e3ae62986662dbf3652b7041308524",
+        "sha256": "1jv66yrphhjnvrg5hgk2hzvs8z57krgzldhjhghvnh79mr5gbjgh",
         "type": "tarball",
-        "url": "https://github.com/fejfighter/emacs/archive/98066351d6ecc8726fd69b57ba05fd99836af43a.tar.gz",
+        "url": "https://github.com/flatwhatson/emacs/archive/bc0d02e573e3ae62986662dbf3652b7041308524.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "gitignore.nix": {
