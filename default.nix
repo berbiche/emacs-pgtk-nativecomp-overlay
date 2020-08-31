@@ -1,6 +1,8 @@
 { sources ? import ./nix/sources.nix
 , pkgs ? import sources."nixos-unstable" { }
-, emacs-pgtk-nativecomp ? sources."emacs-pgtk-nativecomp"
+, emacs-pgtk-nativecomp ? pkgs.fetchFromGitHub {
+    inherit (sources."emacs-pgtk-nativecomp") owner repo rev sha256;
+  }
 }:
 
 let
@@ -15,7 +17,7 @@ rec {
 
   overlay = final: prev: builtins.mapAttrs (x: x prev) packages;
 
-  packages = {
+  packages = rec {
     emacsGccPgtk = 
       builtins.foldl' (drv: fn: fn drv) pkgs.emacs [
 
@@ -26,9 +28,7 @@ rec {
             old: {
               name = "emacsGccPgtk";
               version = "28.0.50";
-              src = pkgs.fetchFromGitHub {
-                inherit (emacs-pgtk-nativecomp) owner repo rev sha256;
-              };
+              src = emacs-pgtk-nativecomp;
 
               configureFlags = old.configureFlags
               ++ [ "--with-pgtk" ];
@@ -70,7 +70,7 @@ rec {
     emacsGccPgtkWrapped =
       pkgs.symlinkJoin {
         name = "emacsGccPgtkWrapped";
-        paths = [ (emacsGccPgtk pkgs) ];
+        paths = [ emacsGccPgtk ];
         buildInputs = [ pkgs.makeWrapper ];
         postBuild = ''
           wrapProgram $out/bin/emacs \

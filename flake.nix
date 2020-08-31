@@ -10,7 +10,7 @@
       pkgs = nixpkgs.legacyPackages.${system};
       src = pkgs.callPackage ./default.nix { inherit emacs-pgtk-nativecomp; };
     in rec {
-      inherit src packages;
+      inherit (src) packages;
       legacyPackages = packages;
       defaultPackage = packages.emacsGccPgtkWrapped;
     }))
