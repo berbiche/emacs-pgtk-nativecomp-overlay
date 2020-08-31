@@ -13,7 +13,7 @@
       inherit src packages;
       legacyPackages = packages;
       defaultPackage = packages.emacsGccPgtkWrapped;
-    })
+    }))
     // {
       overlay = import ./overlay.nix;
     };
