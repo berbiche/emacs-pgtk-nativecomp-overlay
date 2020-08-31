@@ -1,16 +1,12 @@
 let
   sources = import ./nix/sources.nix;
   nixpkgs = sources."nixos-unstable";
-  pkgs = import nixpkgs {};
+  pkgs' = import nixpkgs {};
   emacs-pgtk-nativecomp = sources."emacs-pgtk-nativecomp";
-  libPath = with pkgs; lib.concatStringsSep ":" [
-    "${lib.getLib libgccjit}/lib/gcc/${stdenv.targetPlatform.config}/${libgccjit.version}"
-    "${lib.getLib stdenv.cc.cc}/lib"
-    "${lib.getLib stdenv.glibc}/lib"
-  ];
-  emacsGccPgtk = builtins.foldl' (drv: fn: fn drv)
-    pkgs.emacs
-    [
+
+  emacsGccPgtk =
+    { pkgs ? pkgs' }:
+    builtins.foldl' (drv: fn: fn drv) pkgs.emacs [
 
       (drv: drv.override { srcRepo = true; })
 
@@ -60,22 +56,33 @@ let
       )
     ];
 in
-_: _:
-  {
-    ci = (import ./nix {}).ci;
+rec {
+  ci = (import ./nix {}).ci;
 
+  overlay = final: prev: builtins.mapAttrs (x: x prev) packages;
+
+  packages = {
     inherit emacsGccPgtk;
 
-    emacsGccPgtkWrapped = pkgs.symlinkJoin {
-      name = "emacsGccPgtkWrapped";
-      paths = [ emacsGccPgtk ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/emacs \
-        --set LIBRARY_PATH ${libPath}
-      '';
-      meta.platforms = pkgs.stdenv.lib.platforms.linux;
-      passthru.nativeComp = true;
-      src = emacsGccPgtk.src;
-    };
-  }
+    emacsGccPgtkWrapped =
+      { pkgs ? pkgs' }: let
+        libPath = with pkgs; lib.concatStringsSep ":" [
+          "${lib.getLib libgccjit}/lib/gcc/${stdenv.targetPlatform.config}/${libgccjit.version}"
+          "${lib.getLib stdenv.cc.cc}/lib"
+          "${lib.getLib stdenv.glibc}/lib"
+          ];
+      in
+      pkgs.symlinkJoin {
+        name = "emacsGccPgtkWrapped";
+        paths = [ (emacsGccPgtk pkgs) ];
+        buildInputs = [ pkgs.makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/emacs \
+          --set LIBRARY_PATH ${libPath}
+        '';
+        meta.platforms = pkgs.stdenv.lib.platforms.linux;
+        passthru.nativeComp = true;
+        src = emacsGccPgtk.src;
+      };
+  };
+}

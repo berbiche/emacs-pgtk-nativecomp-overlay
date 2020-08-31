@@ -7,9 +7,9 @@ Follow the instructions [here](https://app.cachix.org/cache/mjlbach) to set up n
 Add the following to your $HOME/.config/nixpkgs/overlays directory: (make a file $HOME/.config/nixpkgs/overlays/emacs.nix and paste the snippet below into that file)
 
 ```nix
-import (builtins.fetchTarball {
+(import (builtins.fetchTarball {
       url = https://github.com/mjlbach/emacs-pgtk-nativecomp-overlay/archive/master.tar.gz;
-    })
+    })).overlay;
 ```
 
 Install emacsGccPgtk (if you're using native nix package management):
