@@ -8,8 +8,8 @@ Add the following to your $HOME/.config/nixpkgs/overlays directory: (make a file
 
 ```nix
 (import (builtins.fetchTarball {
-      url = https://github.com/mjlbach/emacs-pgtk-nativecomp-overlay/archive/master.tar.gz;
-    })).overlay;
+  url = https://github.com/mjlbach/emacs-pgtk-nativecomp-overlay/archive/master.tar.gz;
+})).overlay
 ```
 
 Install emacsGccPgtk (if you're using native nix package management):
