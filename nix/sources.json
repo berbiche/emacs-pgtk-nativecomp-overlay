@@ -5,10 +5,10 @@
         "homepage": "http://www.gnu.org/software/emacs/",
         "owner": "flatwhatson",
         "repo": "emacs",
-        "rev": "949fd43e4fbce1c4a135c4a16f3921b4847e5466",
-        "sha256": "0v3xrpnmma15iac4yj3r0962w25ihrvka73c9ywwh9wnjrni0qhb",
+        "rev": "717c8fe9a1f3d931f6ec0618493af14c0eafbfe2",
+        "sha256": "1hgbwnlwxh7ma61gp9d0cqhd96g4mj8rmxqvpq109jd7s09l8wkb",
         "type": "tarball",
-        "url": "https://github.com/flatwhatson/emacs/archive/949fd43e4fbce1c4a135c4a16f3921b4847e5466.tar.gz",
+        "url": "https://github.com/flatwhatson/emacs/archive/717c8fe9a1f3d931f6ec0618493af14c0eafbfe2.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "gitignore.nix": {
