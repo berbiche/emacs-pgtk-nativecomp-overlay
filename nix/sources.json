@@ -5,10 +5,10 @@
         "homepage": "http://www.gnu.org/software/emacs/",
         "owner": "flatwhatson",
         "repo": "emacs",
-        "rev": "d99bb1c97dd7507ef71cffd2ff36a307b40f71d7",
-        "sha256": "0g2v9qbbrhs2p5w4k5zh6rh729wk3z7wdpnzdi54bvsk9018ab0f",
+        "rev": "130b00eeae7b0f5839eb03ad39ee72c8abf6101a",
+        "sha256": "1fpwpy5pcm0vx8x3yd0bck24h93l14m9ncd65gja12i95iwqy4fj",
         "type": "tarball",
-        "url": "https://github.com/flatwhatson/emacs/archive/d99bb1c97dd7507ef71cffd2ff36a307b40f71d7.tar.gz",
+        "url": "https://github.com/flatwhatson/emacs/archive/130b00eeae7b0f5839eb03ad39ee72c8abf6101a.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "gitignore.nix": {
@@ -29,10 +29,10 @@
         "homepage": null,
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "a31736120c5de6e632f5a0ba1ed34e53fc1c1b00",
-        "sha256": "0xfjizw6w84w1fj47hxzw2vwgjlszzmsjb8k8cgqhb379vmkxjfl",
+        "rev": "61525137fd1002f6f2a5eb0ea27d480713362cd5",
+        "sha256": "1gzwz9jvfcf0is6zma7qlgszkngfb2aa4kam0nhs0qnwb4nqn7mg",
         "type": "tarball",
-        "url": "https://github.com/NixOS/nixpkgs/archive/a31736120c5de6e632f5a0ba1ed34e53fc1c1b00.tar.gz",
+        "url": "https://github.com/NixOS/nixpkgs/archive/61525137fd1002f6f2a5eb0ea27d480713362cd5.tar.gz",
         "url_template": "https://github.com/<owner>/<repo>/archive/<rev>.tar.gz"
     },
     "nixpkgs": {
