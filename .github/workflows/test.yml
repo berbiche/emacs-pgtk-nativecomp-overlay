@@ -3,7 +3,7 @@ on:
   pull_request:
   push:
 jobs:
-  build-linux:
+  tests:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.3.2
@@ -17,19 +17,4 @@ jobs:
         # Only needed for private caches
         #authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix-build build.nix
-    - run: nix-shell --run "echo OK"
-  build-macos:
-    runs-on: macos-10.15
-    steps:
-    - uses: actions/checkout@v2.3.2
-    - uses: cachix/install-nix-action@v10
-      with: 
-        skip_adding_nixpkgs_channel: true
-    - uses: cachix/cachix-action@v6
-      with:
-        name: mjlbach
-        signingKey: '${{ secrets.CACHIX_SIGNING_KEY }}'
-        # Only needed for private caches
-        #authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
-    - run: nix-build build.nix -A emacsGcc
     - run: nix-shell --run "echo OK"
