@@ -66,16 +66,4 @@ _: _:
 
     inherit emacsGccPgtk;
 
-    emacsGccPgtkWrapped = pkgs.symlinkJoin {
-      name = "emacsGccPgtkWrapped";
-      paths = [ emacsGccPgtk ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/emacs \
-        --set LIBRARY_PATH ${libPath}
-      '';
-      meta.platforms = pkgs.stdenv.lib.platforms.linux;
-      passthru.nativeComp = true;
-      src = emacsGccPgtk.src;
-    };
   }

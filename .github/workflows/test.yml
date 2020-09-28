@@ -6,10 +6,8 @@ jobs:
   tests:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2.3.2
-    - uses: cachix/install-nix-action@v10
-      with: 
-        skip_adding_nixpkgs_channel: true
+    - uses: actions/checkout@v2.3.3
+    - uses: cachix/install-nix-action@v11
     - uses: cachix/cachix-action@v6
       with:
         name: mjlbach

@@ -12,12 +12,12 @@ import (builtins.fetchTarball {
     })
 ```
 
-Install emacsGccPgtk (if you're using native nix package management):
+Install emacsGccPgtk:
 ```
 nix-env -iA nixpkgs.emacsGccPgtk
 ```
-Install emacsGccPgtkWrapped (if you're using straight.el, doom, or another distribution which has its own package management system):
-```
-nix-env -iA nixpkgs.emacsGccPgtkWrapped
-```
 or add to home-manager/configuration.nix.
+
+Note:
+
+Emacs no longer needs to be wrapped to find the appropriate libgccjit libraries, as such emacsGccPgtkWrapped was removed.

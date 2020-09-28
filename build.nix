@@ -6,5 +6,4 @@ let
 in
 {
   emacsGccPgtk = pkgs.emacsGccPgtk;
-  emacsGccPgtkWrapped = pkgs.emacsGccPgtkWrapped;
 }
