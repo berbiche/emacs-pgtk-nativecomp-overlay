@@ -1,15 +1,17 @@
+{ version ? "28.0.50"
+, sources ? import ./nix/sources.nix
+, pkgs ? import sources.nixos-unstable {}
+, stdenv ? pkgs.stdenv
+, lib ? pkgs.lib
+, emacs-pgtk-nativecomp ? sources.emacs-pgtk-nativecomp
+, emacs ? pkgs.emacs
+, fetchpatch ? pkgs.fetchpatch
+, fetchFromGitHub ? pkgs.fetchFromGitHub
+}:
+
 let
-  sources = import ./nix/sources.nix;
-  nixpkgs = sources."nixos-unstable";
-  pkgs = import nixpkgs {};
-  emacs-pgtk-nativecomp = sources."emacs-pgtk-nativecomp";
-  libPath = with pkgs; lib.concatStringsSep ":" [
-    "${lib.getLib libgccjit}/lib/gcc/${stdenv.targetPlatform.config}/${libgccjit.version}"
-    "${lib.getLib stdenv.cc.cc}/lib"
-    "${lib.getLib stdenv.glibc}/lib"
-  ];
   emacsGccPgtk = builtins.foldl' (drv: fn: fn drv)
-    pkgs.emacs
+    emacs
     [
 
       (drv: drv.override { srcRepo = true; })
@@ -18,30 +20,22 @@ let
         drv: drv.overrideAttrs (
           old: {
             name = "emacsGccPgtk";
-            version = "28.0.50";
-            src = pkgs.fetchFromGitHub {
-              inherit (emacs-pgtk-nativecomp) owner repo rev sha256;
-            };
+            inherit version;
+            src = toString emacs-pgtk-nativecomp;
 
-            configureFlags = old.configureFlags
-            ++ [ "--with-pgtk" ];
-
+            configureFlags = old.configureFlags ++ [ "--with-pgtk" ];
 
             patches = [
-              (
-                pkgs.fetchpatch {
+              (fetchpatch {
                   name = "clean-env.patch";
                   url = "https://raw.githubusercontent.com/nix-community/emacs-overlay/master/patches/clean-env.patch";
                   sha256 = "0lx9062iinxccrqmmfvpb85r2kwfpzvpjq8wy8875hvpm15gp1s5";
-                }
-              )
-              (
-                pkgs.fetchpatch {
+              })
+              (fetchpatch {
                   name = "tramp-detect-wrapped-gvfsd.patch";
                   url = "https://raw.githubusercontent.com/nix-community/emacs-overlay/master/patches/tramp-detect-wrapped-gvfsd.patch";
                   sha256 = "19nywajnkxjabxnwyp8rgkialyhdpdpy26mxx6ryfl9ddx890rnc";
-                }
-              )
+              })
             ];
 
             postPatch = old.postPatch + ''
@@ -60,10 +54,9 @@ let
       )
     ];
 in
-_: _:
-  {
-    ci = (import ./nix {}).ci;
-
+{
+  ci = (import ./nix {}).ci;
+  packages = {
     inherit emacsGccPgtk;
-
-  }
+  };
+}
