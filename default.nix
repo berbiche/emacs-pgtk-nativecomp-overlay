@@ -19,7 +19,7 @@ let
       (
         drv: drv.overrideAttrs (
           old: {
-            name = "emacsGccPgtk";
+            pname = "emacsGccPgtk";
             inherit version;
             src = toString emacs-pgtk-nativecomp;
 
