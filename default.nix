@@ -2,13 +2,13 @@
 , sources ? import ./nix/sources.nix
 , pkgs ? import sources.nixos-unstable {}
 , stdenv ? pkgs.stdenv
-, lib ? pkgs.lib
 , emacs-pgtk-nativecomp ? sources.emacs-pgtk-nativecomp
 , emacs ? pkgs.emacs
 , fetchpatch ? pkgs.fetchpatch
 , fetchFromGitHub ? pkgs.fetchFromGitHub
 }:
 
+with stdenv.lib;
 let
   emacsGccPgtk = builtins.foldl' (drv: fn: fn drv)
     emacs
